@@ -114,11 +114,16 @@
                 } else if (markers[key]) {
                     var marker = markers[key];
                     var layer = marker.layer;
+                    var noMarker = marker.hideMarker;
                     if(typeof layer !== 'undefined'){
                       fg.addLayer(layer);
                     };
-                    fg.addLayer(L.marker([marker.lat, marker.lon]));
 
+                    if(typeof noMarker == 'undefined' || noMarker == false){
+                      fg.addLayer(L.marker([marker.lat, marker.lon]));
+                    };
+
+                    
                     map.setView([marker.lat, marker.lon], marker.zoom, 1);
                 }
 
